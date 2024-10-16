@@ -8,14 +8,11 @@ import logging
 from commit_ccn.domain.CommitMetrics import CommitMetrics
 from commit_ccn.domain.CommitMetricsRepository import CommitMetricsRepository
 
-
-
 class AnalyzeCommitUseCase:
     def __init__(self, repository: CommitMetricsRepository):
         self.repository = repository
 
     def analyze_repo(self, repo_url: str) -> List[CommitMetrics]:
-        # Código simplificado para descargar el repositorio
         download_url = self._build_download_url(repo_url)
         response = requests.get(download_url)
 
@@ -35,8 +32,6 @@ class AnalyzeCommitUseCase:
             return self._analyze_files_in_dir(extracted_dir)
 
     def _build_download_url(self, repo_url: str) -> str:
-        # Implementa la lógica para construir la URL de descarga
-        # Similar a tu método `parse_repo_url`
         return f"{repo_url}/archive/main.zip"
 
     def _get_extracted_dir(self, tmpdirname: str) -> str:
